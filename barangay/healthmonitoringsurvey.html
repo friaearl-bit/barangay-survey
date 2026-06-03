@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <title>
+                Barangay Health Monitoring System
+            </title>
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> -->
+                    <link href="../fonts/fontawesome/css/all.min.css" rel="stylesheet">
+                    <link href="healthmonitoring.css" rel="stylesheet">
+                    </link>
+                </link>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <!-- SPLASH SCREEN - Shows for 1.5 seconds them fades -->
+        <div class="splash-screen" id="splashScreen">
+            <img alt="Barangay Logo" class="splash-logo" src="c:\Users\Yron\OneDrive\Pictures\BarangayLogo.jfif">
+                <div class="splash-text">
+                    Loading Portal
+                </div>
+                <div class="loader-line">
+                </div>
+            </img>
+        </div>
+        <!-- DECORATIVE BACKGROUND ORBS -->
+        <div class="bg-orb bg-orb-1">
+        </div>
+        <div class="bg-orb bg-orb-2">
+        </div>
+        <!-- NAVIGATOR AND LOGO -->
+        <div class="header-container">
+            <div class="logo-area">
+                <img alt="Logo" src="c:\Users\Yron\OneDrive\Pictures\BarangayLogo.jfif">
+                    <h1>
+                        BARANGAY INTEGRATED MATERNAL AND CHILD HEALTH RECORD
+                    </h1>
+                </img>
+            </div>
+            <div class="nav-bar">
+                <a class="nav-link active-nav" data-page="page1" href="#">
+                    <i class="fa-solid fa-syringe">
+                    </i>
+                    Immunization
+                </a>
+                <a class="nav-link" data-page="page2" href="#">
+                    <i class="fa-solid fa-person-pregnant">
+                    </i>
+                    Prenatal / Postpartum
+                </a>
+            </div>
+        </div>
+        <div class="form-page-container">
+            <!-- PAGE 1: IMMUNIZATION -->
+            <div class="page-view" id="page1">
+                <!-- CHILD PROFILE SECTION -->
+                <div class="card">
+                    <h1>
+                        Immunization Record
+                    </h1>
+                    <h2>
+                         Child Profile
+                    </h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <!-- Child Name & Mother Name -->
+                            <tr>
+                                <th>
+                                    Name of the Child
+                                </th>
+                                <td>
+                                    <input id="childname" name="childname" placeholder="Surname, First Name MI." required="" type="text"/>
+                                </td>
+                                <th>
+                                    Name of the Mother
+                                </th>
+                                <td>
+                                    <input id="mothername" name="mothername" placeholder="Surname, First Name MI." required="" type="text"/>
+                                </td>
+                            </tr>
+                            <!-- Date of Birth & Time of Birth -->
+                            <tr>
+                                <th>
+                                    Date of Birth
+                                </th>
+                                <td>
+                                    <input class="past-date-only" id="dob" name="dob" required="" type="date"/>
+                                </td>
+                                <th>
+                                    Time of Birth
+                                </th>
+                                <td>
+                                    <input id="tob" name="tob" type="time"/>
+                                </td>
+                            </tr>
+                            <!-- Birth Weight & Newborn Screening -->
+                            <tr>
+                                <th>
+                                    Birth Weight (lbs)
+                                </th>
+                                <td>
+                                    <!-- Min: 0.0551bs (preemie), Max: 13.231bs (large baby) -->
+                                    <input id="birthweight" name="birthweight" placeholder="e.g. 3.2lbs" min="0.55" max="13.23" step="0.1" type="number"/>
+                                </td>
+                                <th>
+                                    Newborn Screening
+                                </th>
+                                <td>
+                                    <label>
+                                        <input id="nbsYes" name="screening" required="" type="radio" value="Yes">
+                                            Yes
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="nbsNo" name="screening" type="radio" value="No">
+                                            No
+                                        </input>
+                                    </label>
+                                </td>
+                            </tr>
+                            <!-- Type of Feeding & Gender -->
+                            <tr>
+                                <th>
+                                    Type of Feeding
+                                </th>
+                                <td>
+                                    <input id="typeOffeeding" name="typeOffeeding" placeholder="e.g. Breastfed" type="text"/>
+                                </td>
+                                <th>
+                                    Gender
+                                </th>
+                                <td>
+                                    <label>
+                                        <input id="genderMale" name="gender" required="" type="radio" value="Male">
+                                            Male
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="genderFemale" name="gender" type="radio" value="Female">
+                                            Female
+                                        </input>
+                                    </label>
+                                </td>
+                            </tr>
+                            <!-- Address -->
+                            <tr>
+                                <th>
+                                    Address
+                                </th>
+                                <td colspan="3">
+                                    <input id="address" name="address" placeholder="Full Address" type="text"/>
+                                </td>
+                            </tr>
+                            <!-- Type of Delivery & Attended By -->
+                            <tr>
+                                <th>
+                                    Type of Delivery
+                                </th>
+                                <td>
+                                    <label>
+                                        <input id="deliveryCS" name="typeOfDelivery" type="radio" value="Cesarean Section">
+                                            CS
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="deliverNCD" name="typeOfDelivery" type="radio" value="Normal Spontaneous Delivery">
+                                            NSD
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="deliveryOther" name="typeOfDelivery" type="radio" value="Other">
+                                            Other
+                                        </input>
+                                    </label>
+                                    <!-- Text box appears when "Other" is selected -->
+                                    <input disabled="" id="deliveryOtherText" margin-center:="" name="deliveryOtherText" placeholder="Please specify" type="text">
+                                    </input>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Attended by
+                                </th>
+                                <td colspan="3">
+                                    <label>
+                                        <input id="mDoctor" name="attendedby" type="checkbox" value="Doctor of Medicine">
+                                            Doctor
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="rNurse" name="attendedby" type="checkbox" value="Registered Nurse">
+                                            Nurse
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="rMidwife" name="attendedby" type="checkbox" value="Registered Midwife">
+                                            Midwife
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="tbAttendant" name="attendedby" type="checkbox" value="Traditional Birth Assistant">
+                                            TBA
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="AttendedByOther" name="attendedby" type="checkbox" value="Attended by other">
+                                            Other
+                                        </input>
+                                    </label>
+                                    <input disabled="" id="AttendedByOtherText" name="AttendedByOtherText" placeholder="Please specify" style="width: auto; margin-left: 10px;" type="text">
+                                    </input>
+                                </td>
+                            </tr>
+                            <!-- TT Status & Place of Delivery -->
+                            <tr>
+                                <th>
+                                    TT Status
+                                </th>
+                                <td>
+                                    <input id="ttStatus" name="ttstatus" type="text"/>
+                                </td>
+                                <th>
+                                    Place of Delivery
+                                </th>
+                                <td colspan="3">
+                                    <input id="placeOfDelivery" name="placeOfDelivery" style="width: 260px;" type="text"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <!-- IMMUNIZATION TABLE SECTION -->
+                    </div>
+                </div>
+                <div class="card">
+                    <h2>
+                        Immunizations
+                    </h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        VACCINES
+                                    </th>
+                                    <th>
+                                        DATE ADMINISTERED
+                                    </th>
+                                    <th>
+                                        SIGNATURE (IMAGE)
+                                    </th>
+                                    <th>
+                                        NEXT VISIT
+                                    </th>
+                                    <th>
+                                        REMARKS
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- BCG VACCINE - Given at birth -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            B.C.G.
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdBCG[]" required="" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignatureBCG" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitBCG[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkBCG" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- PENTA 1 / OPV 1 - 6 weeks -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            PENTA 1 / OPV 1
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdPentaOPV[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignaturePentaOPV" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitPentaOPV[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkPentaOPV" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- PENTA 2 / OPV 2 - 10 weeks -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            PENTA 2 / OPV 2
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdPenta2[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignaturePenta2" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitPenta2[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkPenta2" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- PENTA 3 / OPV 3 - 14 weeks -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            PENTA 3 / OPV 3
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdPenta3[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignaturePenta3" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitPenta3[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkPenta3" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- HEPATITIS B - Given within 24 hours after birth -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            HEP. B
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdHepB[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignatureHepB" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitHepB[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkHepB" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- AMV (Anti-Measles Vaccine) - 9 months -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            AMV
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdAMV[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignatureAMV" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitAMV[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkAMV" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- MMR (Measles, Mumps, Rubella) - 12-15 months -->
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            MMR
+                                        </strong>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdMMR[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignatureMMR" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitMMR[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkMMR" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- CUSTOM VACCINE - For any additional vaccines -->
+                                <tr>
+                                    <td>
+                                        <div class="other-row">
+                                            <span>
+                                                OTHER:
+                                            </span>
+                                            <input name="OtherVaccine" placeholder="Vaccine Name" type="text">
+                                            </input>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input class="vaccine-date" name="dateAdOther[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input accept="image/*" name="eSignatureOther" type="file"/>
+                                    </td>
+                                    <td>
+                                        <input name="dateNextVisitOther[]" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="remarkOther" type="text"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- ACTIVE BUTTONS for Immunization -->
+                    <div class="action-buttons">
+                        <button class="update-btn" onclick="updateImmunizationData()" type="button">
+                            <i class="fa-solid fa-arrows-rotate">
+                            </i>
+                            UPDATE
+                        </button>
+                        <button class="save-btn" onclick="saveImmunizationData()" type="button">
+                            <i class="fa-solid fa-floppy-disk">
+                            </i>
+                            SAVE
+                        </button>
+                        <button class="print-btn" onclick="window.print()" type="button">
+                            <i class="fa-solid fa-print">
+                            </i>
+                            PRINT RECORD
+                        </button>
+                    </div>
+                    <!-- NEXT BUTTON - Navigate to Prenatal/Postpartum page -->
+                    <button class="next-btn" onclick="goToPage2()" style="width: 100%; margin-top: 1rem;" type="button">
+                        Proceed to Prenatal Record
+                        <i class="fa-solid fa-arrow-right">
+                        </i>
+                    </button>
+                </div>
+            </div>
+            <!-- PAGE 2: PRENATAL/POSTPARTUM -->
+            <div class="page-view" id="page2" style="display: none;">
+                <!-- MATERNAL PROFILE SECTION -->
+                <div class="card">
+                    <h1>
+                        Maternal Profile
+                    </h1>
+                    <div class="table-wrapper">
+                        <table>
+                            <!-- Mother's Name -->
+                            <tr>
+                                <th>
+                                    NAME
+                                </th>
+                                <td colspan="3">
+                                    <input id="maternalName" name="maternalstyle" placeholder="Full Name (Last, First Name MI.)" required="" type="text"/>
+                                </td>
+                            </tr>
+                            <!-- Mother's Address -->
+                            <tr>
+                                <th>
+                                    Address
+                                </th>
+                                <td colspan="3">
+                                    <input id="motherAddress" name="motherAddress" placeholder="Full Street Address" required="" type="text"/>
+                                </td>
+                            </tr>
+                            <!-- Birth Date & OB Score (TPAL format) -->
+                            <tr>
+                                <th>
+                                    Birth date
+                                </th>
+                                <td>
+                                    <input class="past-date-only" id="motherAge" name="motherAge" required="" style="width: 200px;" type="date"/>
+                                </td>
+                                <th>
+                                    O.B. SCORE
+                                </th>
+                                <td>
+                                    <div class="obscore-row">
+                                        <label>
+                                            G
+                                            <input maxlength="2" name="gravida" type="text"/>
+                                        </label> <!-- Gravida: total pregnancies -->
+                                        <label>
+                                            P
+                                            <input maxlength="2" name="para" type="text"/>
+                                        </label> <!-- Para: births after 20 weeks -->
+                                        <label>
+                                            (T
+                                            <input maxlength="2" name="term" type="text"/>
+                                        </label> <!-- Term: full-term deliveries -->
+                                        <label>
+                                            P
+                                            <input maxlength="2" name="preterm" type="text"/>
+                                        </label> <!-- Preterm: premature deliviries -->
+                                        <label>
+                                            A
+                                            <input maxlength="2" name="abortion" type="text"/>
+                                        </label> <!-- Abortion: miscarriages -->
+                                        <label>
+                                            L
+                                            <input maxlength="2" name="living" type="text">
+                                                )
+                                            </input>
+                                        </label> <!-- Living: living children -->
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- LMP (Last Nebstrual Period) & EDC (Estimated Date of Confinement) -->
+                            <tr>
+                                <th>
+                                    L.M.P.
+                                </th>
+                                <td>
+                                    <input id="lastMens" name="lastMens" required="" type="date"/>
+                                </td>
+                                <th>
+                                    E.D.C.
+                                </th>
+                                <td>
+                                    <input id="edc" name="edc" required="" type="date"/>
+                                </td>
+                            </tr>
+                            <!-- Ferrous Sulfate & Tetanus Toxoid Dates -->
+                            <tr>
+                                <th>
+                                    Ferrous Sulfate
+                                </th>
+                                <td>
+                                    <input name="FerrouSulfate" placeholder="Date Started" type="text"/>
+                                </td>
+                                <th>
+                                    Tetanus Toxoid Dates
+                                </th>
+                                <td>
+                                    <div class="tetanus-row">
+                                        <label>
+                                            1
+                                            <input name="Tetanus_toxoid1" type="date"/>
+                                        </label>
+                                        <label>
+                                            2
+                                            <input name="Tetanus_toxoid2" type="date"/>
+                                        </label>
+                                        <label>
+                                            3
+                                            <input name="Tetanus_toxoid3" type="date"/>
+                                        </label>
+                                        <label>
+                                            4
+                                            <input name="Tetanus_toxoid4" type="date"/>
+                                        </label>
+                                        <label>
+                                            5
+                                            <input name="Tetanus_toxoid5" type="date"/>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- MATERNAL VISIT RECORD - Prenatal checkups table -->
+                <div class="card">
+                    <h2>
+                        Maternal Visit Record
+                    </h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>
+                                        DATE
+                                    </th>
+                                    <th>
+                                        BP
+                                    </th>
+                                    <!-- Blood Pressure -->
+                                    <th>
+                                        WT
+                                    </th>
+                                    <!-- Weight -->
+                                    <th>
+                                        AOG
+                                    </th>
+                                    <!-- Age og Gestation (weeks) -->
+                                    <th>
+                                        FHT
+                                    </th>
+                                    <!-- Fetal Heart Tone -->
+                                    <th>
+                                        FH (cm)
+                                    </th>
+                                    <!-- Fundal Height -->
+                                    <th>
+                                        Lab Exams
+                                    </th>
+                                    <th>
+                                        Interventions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!-- Visit 1 -->
+                                <tr>
+                                    <td>
+                                        <input name="visit_date1" required="" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="bp1" placeholder="120/80" style="width: 85px;" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="wt1" placeholder="kg" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="aog1" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="fht1" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="fh1" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="lab1" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="intervention1" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- Visit 2 -->
+                                <tr>
+                                    <td>
+                                        <input name="visit_date2" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="bp2" style="width: 85px;" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="wt2" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="aog2" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="fht2" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="fh2" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="lab2" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="intervention2" type="text"/>
+                                    </td>
+                                </tr>
+                                <!-- Visit 3 -->
+                                <tr>
+                                    <td>
+                                        <input name="visit_date3" type="date"/>
+                                    </td>
+                                    <td>
+                                        <input name="bp3" style="width: 85px;" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="wt3" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="aog3" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="fht3" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="fh3" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="lab3" type="text"/>
+                                    </td>
+                                    <td>
+                                        <input name="intervention3" type="text"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- POSTPARTUM PROFILE SECTION -->
+                <div class="card">
+                    <h2>
+                        Postpartum Profile
+                    </h2>
+                    <div class="table-wrapper">
+                        <table>
+                            <tr>
+                                <!-- Outcome & Delivery Date/Time -->
+                                <th>
+                                    Outcome
+                                </th>
+                                <td>
+                                    <input id="outcome" name="outcome" required="" type="text"/>
+                                </td>
+                                <th>
+                                    Delivery Date/Time
+                                </th>
+                                <td style="display: flex; gap: 10px;">
+                                    <input id="delivery_date" name="delivery_date" required="" type="date">
+                                        <input id="delivery_time" name="delivery_time" required="" type="time">
+                                        </input>
+                                    </input>
+                                </td>
+                            </tr>
+                            <!-- Type of Delivery & Place of Delivery -->
+                            <tr>
+                                <th>
+                                    Type of Delivery
+                                </th>
+                                <td>
+                                    <label>
+                                        <input name="delivery_type" required="" type="radio" value="NSD">
+                                            NSD
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input name="delivery_type" type="radio" value="CS">
+                                            CS
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input id="deliveryOther" name="delivery_type" type="radio" value="Other">
+                                            Other
+                                        </input>
+                                    </label>
+                                    <input disabled="" id="typeDeliveryOtherText" name="typeDeliveryOtherText" placeholder="Specify" style="width: 200px; margin-left: 10px;" type="text">
+                                    </input>
+                                </td>
+                                <th>
+                                    Place of Delivery
+                                </th>
+                                <td>
+                                    <input id="delivery_place" name="delivery_place" required="" type="text"/>
+                                </td>
+                            </tr>]
+                            <!-- Breastfeeding -->
+                            <tr>
+                                <th>
+                                    Breastfed
+                                </th>
+                                <td>
+                                    <label>
+                                        <input name="breastfed" required="" type="radio" value="YES">
+                                            YES
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input name="breastfed" type="radio" value="NO">
+                                            NO
+                                        </input>
+                                    </label>
+                                </td>
+                                <th>
+                                    Date of Initiation
+                                </th>
+                                <td>
+                                    <input name="initiation_date" type="date"/>
+                                </td>
+                            </tr>
+                            <!-- Newborn Screening -->
+                            <tr>
+                                <th>
+                                    Newborn Screening
+                                </th>
+                                <td>
+                                    <label>
+                                        <input name="nbs" type="radio" value="YES">
+                                            YES
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input name="nbs" type="radio" value="NO">
+                                            NO
+                                        </input>
+                                    </label>
+                                </td>
+                                <th>
+                                    Date (Referred/Done)
+                                </th>
+                                <td>
+                                    <input name="nbs_date" type="date"/>
+                                </td>
+                            </tr>
+                            <!-- Gender of Child & Birth Weight -->
+                            <tr>
+                                <th>
+                                    Gender of Child
+                                </th>
+                                <td>
+                                    <label>
+                                        <input name="gender_child" type="radio" value="Male">
+                                            Male
+                                        </input>
+                                    </label>
+                                    <label>
+                                        <input name="gender_child" type="radio" value="Female">
+                                            Female
+                                        </input>
+                                    </label>
+                                </td>
+                                <th>
+                                    Birth Weight (kg)
+                                </th>
+                                <td>
+                                    <input name="birth_weight" placeholder="e.g. 3.2" type="text"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- CHECK-UPS & SUPPLEMENTATION -->
+                <div class="card">
+                    <h2>
+                        Check-ups & Supplementation
+                    </h2>
+                    <div class="table-wrapper">
+                        <table>
+                        <!-- Table Headers -->
+                            <tr>
+                                <th colspan="2" style="text-align: center; border-bottom: 2px solid var(--primary); color: var(--primary);">
+                                    Postpartum Check-ups
+                                </th>
+                                <th colspan="2" style="text-align: center; border-bottom: 2px solid var(--primary); color: var(--primary);">
+                                    Vitamin A / FeSO4
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    Within 24 hours
+                                </th>
+                                <th>
+                                    Within 1 week
+                                </th>
+                                <th>
+                                    Vitamin A
+                                </th>
+                                <th>
+                                    FeSO4
+                                </th>
+                            </tr>
+                            <!-- Row 1 -->
+                            <tr>
+                                <td>
+                                    <input name="checkup1_24" required="" type="date"/>
+                                </td>
+                                <td>
+                                    <input name="checkup1_week" type="date"/>
+                                </td>
+                                <td>
+                                    <input name="vitA1" type="date"/>
+                                </td>
+                                <td>
+                                    <input name="feso4_1" type="date"/>
+                                </td>
+                            </tr>
+                            <!-- Row 2 -->
+                            <tr>
+                                <td>
+                                    <input name="checkup2_24" type="date"/>
+                                </td>
+                                <td>
+                                    <input name="checkup2_week" type="date"/>
+                                </td>
+                                <td>
+                                    <input name="vitA2" type="date"/>
+                                </td>
+                                <td>
+                                    <input name="feso4_2" type="date"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- ACTION BUTTON for Prenatal/Postpartum -->
+                    <div class="action-buttons">
+                        <button class="update-btn" onclick="updatePrenatalData()" type="button">
+                            <i class="fa-solid fa-arrows-rotate">
+                            </i>
+                            UPDATE
+                        </button>
+                        <button class="save-btn" onclick="savePrenatalData()" type="button">
+                            <i class="fa-solid fa-floppy-disk">
+                            </i>
+                            SAVE
+                        </button>
+                        <button class="print-btn" onclick="window.print()" type="button">
+                            <i class="fa-solid fa-print">
+                            </i>
+                            PRINT RECORD
+                        </button>
+                    </div>
+                    <!-- NAVIGATION BUTTONS -->
+                    <div class="nav-buttons" style="display: flex; justify-content: space-between; margin-top: 20px;">
+                        <button class="prev-btn" onclick="goToPage1()" type="button">
+                            <i class="fa-solid fa-arrow-left">
+                            </i>
+                            Back to Immunization
+                        </button>
+                        <button class="submit-btn" onclick="validateAndSubmit()" type="button">
+                            <i class="fa-solid fa-check">
+                            </i>
+                            Submit Health Record
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- PAGE 3: THANK YOU -->
+            <div class="page-view" id="page3" style="display: none;">
+                <div class="card thankyou-card">
+                    <div style="background: rgba(16, 185, 129, 0.1); width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 10px;">
+                        <i class="fa-solid fa-check" style="font-size: 4rem; color: var(--success);">
+                        </i>
+                    </div>
+                    <h1>
+                        Submission Complete!
+                    </h1>
+                    <p>
+                        The health records have been successfully secured and submitted to the Barangay Health Center database. Thank you for your update.
+                    </p>
+                    <!-- Return to Homepage button -->
+                    <button class="prev-btn" onclick="resetAndStartOver()" style="margin-top: 1.5rem;">
+                        <i class="fa-solid fa-home">
+                        </i>
+                        Return to Homepage
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- EXTERNAL JAVASCRIPT -->
+        <script src="healthmonitoring.js">
+        </script>
+    </body>
+</html>

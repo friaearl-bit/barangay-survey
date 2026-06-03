@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+            <meta content="width=device-width, initial-scale=1.0" name="viewport">
+                <title>
+                    Barangay Health Login
+                </title>
+                 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+                <style>
+         /* ANIMATED GRADIENT BACKGROUND */
+            	:root {
+				    --primary: #4361ee;
+				    --primary-hover: #3a0ca3;
+				    --bg-gradient: linear-gradient(-45deg, #a1c4fd, #c2e9fb, #e0c3fc, #8ec5fc);
+				}
+				body {
+				    margin: 0;
+				    padding: 0;
+				    font-family: 'Poppins', sans-serif;
+				    height: 100vh;
+				    display: flex;
+				    align-items: center;
+				    justify-content: center;
+				    background: var(--bg-gradient);
+				    background-size: 400% 400%;
+				    animation: gradientBG 15s ease infinite;
+				    overflow: hidden;
+				}
+				/* 1.5 SECOND SPLASH SCREEN */
+				.splash-screen {
+				    position: fixed;
+				    inset: 0;
+				    background: #ffffff;
+				    z-index: 99999;
+				    display: flex;
+				    flex-direction: column;
+				    justify-content: center;
+				    align-items: center;
+				    animation: fadeOutSplash 0.5s ease 1.5s forwards;
+				}
+				.splash-logo {
+				    width: 110px;
+				    height: 110px;
+				    object-fit: contain;
+				    animation: heartbeat 1s ease infinite;
+				    mix-blend-mode: multiply;
+				}
+				.splash-text {
+				    margin-top: 20px;
+				    font-weight: 700;
+				    color: #1a365d;
+				    font-size: 1.5rem;
+				    letter-spacing: 2px;
+				    text-transform: uppercase;
+				    opacity: 0;
+				    animation: slideUpFade 0.5s ease 0.3s forwards;
+				}
+				.loader-line {
+				    width: 0px;
+				    height: 4px;
+				    background: var(--primary);
+				    margin-top: 15px;
+				    border-radius: 4px;
+				    animation: loadWidth 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+				}
+                /* ANIMATIONS */
+				@keyframes heartbeat {
+				    0% {
+				        transform: scale(1);
+				    }
+				    25% {
+				        transform: scale(1.08);
+				    }
+				    50% {
+				        transform: scale(1);
+				    }
+				}
+				@keyframes slideUpFade {
+				    from {
+				        opacity: 0;
+				        transform: translateY(20px);
+				    }
+				    to {
+				        opacity: 1;
+				        transform: translateY(0);
+				    }
+				}
+				@keyframes loadWidth {
+				    to {
+				        width: 150px;
+				    }
+				}
+				@keyframes fadeOutSplash {
+				    to {
+				        opacity: 0;
+				        visibility: hidden;
+				        pointer-events: none;
+				    }
+				}
+				@keyframes gradientBG {
+				    0% {
+				        background-position: 0% 50%;
+				    }
+				    50% {
+				        background-position: 100% 50%;
+				    }
+				    100% {
+				        background-position: 0% 50%;
+				    }
+				}
+				/* DECORATIVE BACKGROUND ORBS */
+				.orb {
+				    position: absolute;
+				    border-radius: 50%;
+				    filter: blur(60px);
+				    z-index: -1;
+				    animation: float 10s infinite ease-in-out alternate;
+				}
+				.orb-1 {
+				    width: 300px;
+				    height: 300px;
+				    background: rgba(67, 97, 238, 0.4);
+				    top: -10%;
+				    left: -10%;
+				}
+				.orb-2 {
+				    width: 400px;
+				    height: 400px;
+				    background: rgba(76, 201, 240, 0.4);
+				    bottom: -10%;
+				    right: -10%;
+				    animation-delay: -5s;
+				}
+				@keyframes float {
+				    0% {
+				        transform: translate(0, 0) scale(1);
+				    }
+				    100% {
+				        transform: translate(50px, 50px) scale(1.1);
+				    }
+				}
+				/* LOGIN CARD - Glassmorphism effect */
+				.login-card {
+				    background: rgba(255, 255, 255, 0.6);
+				    padding: 3.5rem 3rem;
+				    border-radius: 24px;
+				    box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+				    backdrop-filter: blur(20px);
+				    -webkit-backdrop-filter: blur(20px);
+				    border: 1px solid rgba(255, 255, 255, 0.8);
+				    width: 90%;
+				    max-width: 420px;
+				    text-align: center;
+				    position: relative;
+				    overflow: hidden;
+				    transform: translateY(30px);
+				    opacity: 0;
+				    animation: formReveal 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.8s forwards;
+				}
+				@keyframes formReveal {
+				    to {
+				        transform: translateY(0);
+				        opacity: 1;
+				    }
+				}
+                /* Shine effect that sweeps across the card */
+				.login-card::before {
+				    content: '';
+				    position: absolute;
+				    top: 0;
+				    left: -150%;
+				    width: 100%;
+				    height: 100%;
+				    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+				    transform: skewX(-25deg);
+				    animation: shineSweep 1s ease-out 2.5s forwards;
+				    pointer-events: none;
+				    z-index: 10;
+				}
+				@keyframes shineSweep {
+				    0% {
+				        left: -150%;
+				    }
+				    100% {
+				        left: 150%;
+				    }
+				}
+				.login-logo {
+				    width: 85px;
+				    height: 85px;
+				    object-fit: contain;
+				    margin-bottom: 1rem;
+				    mix-blend-mode: multiply;
+				}
+				h1 {
+				    font-size: 1.3rem;
+				    color: #1a365d;
+				    margin-bottom: 2.5rem;
+				    line-height: 1.4;
+				    text-transform: uppercase;
+				    letter-spacing: 0.5px;
+				    font-weight: 700;
+				}
+                /* INPUT FIELD with FLOATING LABEL */
+				.input-group {
+				    position: relative;
+				    margin-bottom: 2.5rem;
+				    text-align: left;
+				}
+				.input-group input {
+				    width: 100%;
+				    padding: 15px;
+				    border: 2px solid transparent;
+				    background: rgba(255, 255, 255, 0.7);
+				    border-radius: 12px;
+				    font-size: 1rem;
+				    color: #1a202c;
+				    transition: all 0.3s ease;
+				    box-sizing: border-box;
+				    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.02);
+				}
+				.input-group label {
+				    position: absolute;
+				    top: 50%;
+				    left: 15px;
+				    transform: translateY(-50%);
+				    font-size: 0.95rem;
+				    font-weight: 600;
+				    color: #64748b;
+				    transition: all 0.3s ease;
+				    pointer-events: none;
+				}
+				.input-group input:focus, .input-group input:not(:placeholder-shown) {
+				    background: #ffffff;
+				    border-color: var(--primary);
+				    outline: none;
+				    box-shadow: 0 0 15px rgba(67, 97, 238, 0.2);
+				}
+                /* Floating label moves up when typing */
+				.input-group input:focus+label, .input-group input:not(:placeholder-shown)+label {
+				    top: -10px;
+				    left: 10px;
+				    font-size: 0.8rem;
+				    background: var(--primary);
+				    color: white;
+				    padding: 2px 8px;
+				    border-radius: 6px;
+				}
+                /* LOGIN BUTTON */
+				button {
+				    width: 100%;
+				    padding: 15px;
+				    border: none;
+				    border-radius: 12px;
+				    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
+				    color: white;
+				    font-weight: 600;
+				    cursor: pointer;
+				    transition: all 0.3s ease;
+				    font-size: 1.05rem;
+				    letter-spacing: 1px;
+				    box-shadow: 0 6px 16px rgba(67, 97, 238, 0.3);
+				    font-family: 'Poppins', sans-serif;
+				}
+				button:hover {
+				    transform: translateY(-3px);
+				    box-shadow: 0 10px 25px rgba(67, 97, 238, 0.4);
+				}
+				button:active {
+				    transform: translateY(1px);
+				}
+                /* MOBILE RESPONSIVER */
+				@media (max-width: 480px) {
+				    .login-card {
+				        padding: 2.5rem 1.5rem;
+				        border-radius: 20px;
+				    }
+				    h1 {
+				        font-size: 1.15rem;
+				        margin-bottom: 2rem;
+				    }
+				}
+                </style>
+            </meta>
+        </meta>
+    </head>
+    <body>
+        <!-- SPLASH SCREEN - Shows first then disappears -->
+        <div class="splash-screen" id="splashScreen">
+            <img alt="Barangay Logo" class="splash-logo" src="c:\Users\Yron\OneDrive\Pictures\BarangayLogo.jfif
+                    System Initialization
+                </div>
+                <div class="loader-line">
+                </div>
+            </img>
+        </div>
+        <!-- DECORATIVE BACKGROUND CIRCLES -->
+        <div class="orb orb-1">
+        </div>
+        <div class="orb orb-2">
+        </div>
+         <!-- MAIN LOGIN FORM -->
+        <div class="login-card">
+            <img alt="Barangay Logo" class="login-logo" src="c:\Users\Yron\OneDrive\Pictures\BarangayLogo.jfif">
+                <h1>
+                    Barangay Integrated Maternal and Child Health Record
+                </h1>
+                <form id="loginForm">
+                    <div class="input-group">
+                    	<!-- Allow case insensitive; will be formatted using javascript -->
+                        <input id="baranggayHealthID" name="baranggayHealthID" pattern="^[Bb][Rr][Gg][Yy]\d{3}-\d{6}$" placeholder="" required="" title="BRGYXXX-XXXXXX" type="text">
+                        <!-- Uncomment for javascript validation -->
+                        <!-- <input id="baranggayHealthID" name="baranggayHealthID" placeholder="" required="" title="BRGYXXX-XXXXXX" type="text"> -->
+                            <label for="baranggayHealthID">
+                                Health ID Number
+                            </label>
+                        </input>
+                    </div>
+                    <button id="loginBtn" type="submit">
+                        Proceed to Health Portal
+                    </button>
+                </form>
+            </img>
+        </div>
+         <!-- LOGIN VALIDATION SCRIPT -->
+        <script src="barangayLogIn.js"></script>
+</html>
